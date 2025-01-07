@@ -3,13 +3,23 @@
 [![downloads](https://shields.io/pypi/dm/mailtrap)](https://pypi.org/project/mailtrap/)
 
 
-# Official Mailtrap Python client
+# Unofficial Async fork of the official Mailtrap Python client
+Adds async support to the official Mailtrap Python client. This fork is not maintained by the original authors of the official Mailtrap Python client.
 
 This Python package offers integration with the [official API](https://api-docs.mailtrap.io/) for [Mailtrap](https://mailtrap.io).
 
 Quickly add email sending functionality to your Python application with Mailtrap.
 
 ## Compatibility with previous releases
+The fork requires Python 3.9 and uses httpx rather than requests.
+
+The non-async version of the official Mailtrap Python client is available at [mailtrap](https://pypi.org/project/mailtrap/).
+
+This version maintains the same API as the official Mailtrap Python client, with the addition of an async send method, it is called using `await client.asend`.
+
+I have versioned this as 3.0.0 due to the breaking changes in the dependencies.
+
+## Original compatilibility message
 
 Versions of this package up to 1.0.1 were a different, unrelated project, that is now maintained as [Sendria](https://github.com/msztolcman/sendria). To continue using it, see [instructions](#information-for-version-1-users).
 
@@ -17,7 +27,7 @@ Versions of this package up to 1.0.1 were a different, unrelated project, that i
 
 ### Prerequisites
 
-- Python version 3.6+
+- Python version 3.9+
 
 ### Install package
 
@@ -43,6 +53,20 @@ mail = mt.Mail(
 # create client and send
 client = mt.MailtrapClient(token="your-api-key")
 client.send(mail)
+```
+
+### Async
+```python
+mail = mt.Mail(
+    sender=mt.Address(email="mailtrap@example.com", name="Mailtrap Test"),
+    to=[mt.Address(email="your@email.com")],
+    subject="You are awesome!",
+    text="Congrats for sending test email with Mailtrap!",
+)
+
+# create client and send
+client = mt.MailtrapClient(token="your-api-key")
+await client.asend(mail)
 ```
 
 ### Full
@@ -124,7 +148,7 @@ client.send(mail)
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/railsware/mailtrap-python). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on [GitHub](https://github.com/tomfaulkner/mailtrap-python). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 
 ### Development Environment
 

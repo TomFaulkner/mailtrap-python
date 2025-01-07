@@ -1,3 +1,9 @@
+## [3.0.0] - 2025-01-07
+- Add async send method
+- Switches out httpx for requests
+- Removes support for Python < 3.9
+- Adds support up to 3.13
+- Tests for client are currently broken due to dependence upon `responses` library, which is specific to `requests`
 ## [2.0.1] - 2023-05-18
 - Add User-Agent header to all requests
 

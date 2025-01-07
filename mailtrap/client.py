@@ -1,9 +1,6 @@
-from typing import Dict
-from typing import List
 from typing import NoReturn
-from typing import Union
 
-import requests
+import httpx
 
 from mailtrap.exceptions import APIError
 from mailtrap.exceptions import AuthorizationError
@@ -24,22 +21,35 @@ class MailtrapClient:
         self.api_host = api_host
         self.api_port = api_port
 
-    def send(self, mail: BaseMail) -> Dict[str, Union[bool, List[str]]]:
+    def send(self, mail: BaseMail) -> dict[str, bool | list[str]]:
         url = f"{self.base_url}/api/send"
-        response = requests.post(url, headers=self.headers, json=mail.api_data)
+        response = httpx.post(url, headers=self.headers, json=mail.api_data)
 
-        if response.ok:
-            data = response.json()  # type: Dict[str, Union[bool, List[str]]]
+        if response.is_success:
+            data: dict[str, bool | list[str]] = response.json()
             return data
 
         self._handle_failed_response(response)
+
+
+    async def asend(self, mail: BaseMail) -> dict[str, bool | list[str]]:
+        async with httpx.AsyncClient() as client:
+            url = f"{self.base_url}/api/send"
+            response = await client.post(url, headers=self.headers, json=mail.api_data)
+
+            if not response.is_success:
+                self._handle_failed_response(response)
+
+
+            data: dict[str, bool | list[str]] = response.json()
+            return data
 
     @property
     def base_url(self) -> str:
         return f"https://{self.api_host.rstrip('/')}:{self.api_port}"
 
     @property
-    def headers(self) -> Dict[str, str]:
+    def headers(self) -> dict[str, str]:
         return {
             "Authorization": f"Bearer {self.token}",
             "Content-Type": "application/json",
@@ -49,7 +59,7 @@ class MailtrapClient:
         }
 
     @staticmethod
-    def _handle_failed_response(response: requests.Response) -> NoReturn:
+    def _handle_failed_response(response: httpx.Response) -> NoReturn:
         status_code = response.status_code
         data = response.json()
 

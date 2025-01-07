@@ -1,7 +1,7 @@
 [project]
-name = "mailtrap"
-version = "2.0.1"
-description = "Official mailtrap.io API client"
+name = "mailtrap-unofficial-async"
+version = "3.0.0"
+description = " Async fork of Official mailtrap.io Python client"
 readme = "README.md"
 license = {file = "LICENSE.txt"}
 authors = [{name = "Railsware Products Studio LLC", email = "support@mailtrap.io"}]
@@ -10,22 +10,19 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Application Frameworks",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 dependencies = [
-    "requests>=2.26.0",
+    "httpx>=0.20.0",
 ]
 
 [project.urls]
 Homepage = "https://mailtrap.io/"
-Documentation = "https://github.com/railsware/mailtrap-python"
-Repository = "https://github.com/railsware/mailtrap-python.git"
+Documentation = "https://github.com/TomFaulkner/mailtrap-python"
+Repository = "https://github.com/TomFaulkner/mailtrap-python.git"
 "API documentation" = "https://api-docs.mailtrap.io/"
 
 [build-system]
