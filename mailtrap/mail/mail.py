@@ -43,6 +43,8 @@ class Mail(BaseMail):
             headers=headers,
             custom_variables=custom_variables,
         )
+        # MT API requires one of these. mailtrap.exceptions.APIError: must specify either text or html body
+        assert text or html, "Either `text` or `html` must be provided"
         self.subject = subject
         self.text = text
         self.html = html
