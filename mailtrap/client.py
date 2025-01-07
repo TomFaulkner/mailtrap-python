@@ -31,7 +31,6 @@ class MailtrapClient:
 
         self._handle_failed_response(response)
 
-
     async def asend(self, mail: BaseMail) -> dict[str, bool | list[str]]:
         async with httpx.AsyncClient() as client:
             url = f"{self.base_url}/api/send"
@@ -39,7 +38,6 @@ class MailtrapClient:
 
             if not response.is_success:
                 self._handle_failed_response(response)
-
 
             data: dict[str, bool | list[str]] = response.json()
             return data
