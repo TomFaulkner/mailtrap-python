@@ -3,6 +3,7 @@ __pycache__/
 
 # Distribution / packaging
 dist/
+build/
 *.egg-info/
 
 # IntelliJ's project specific settings

@@ -11,7 +11,7 @@ This Python package offers integration with the [official API](https://api-docs.
 Quickly add email sending functionality to your Python application with Mailtrap.
 
 ## Compatibility with previous releases
-The fork requires Python 3.9 and uses httpx rather than requests.
+The fork requires Python 3.10 and uses httpx rather than requests.
 
 The non-async version of the official Mailtrap Python client is available at [mailtrap](https://pypi.org/project/mailtrap/).
 
@@ -27,7 +27,7 @@ Versions of this package up to 1.0.1 were a different, unrelated project, that i
 
 ### Prerequisites
 
-- Python version 3.9+
+- Python version 3.10+
 
 ### Install package
 
