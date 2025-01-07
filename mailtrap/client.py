@@ -44,6 +44,7 @@ class MailtrapClient:
 
     @property
     def base_url(self) -> str:
+        # flake8: noqa: E231
         return f"https://{self.api_host.rstrip('/')}:{self.api_port}"
 
     @property
