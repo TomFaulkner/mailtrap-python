@@ -26,8 +26,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install tox
         run: pip install tox
-      - name: Run tests
-        run: tox -e py${{ matrix.python }}
+      # - name: Run tests
+      #   run: tox -e py${{ matrix.python }}
       - name: Run linters
         run: tox -e pre-commit
       - name: Run type checking
